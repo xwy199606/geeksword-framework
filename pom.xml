@@ -6,6 +6,7 @@
 
     <groupId>org.geeksword</groupId>
     <artifactId>geeksword-build</artifactId>
+    <packaging>pom</packaging>
     <version>${revision}</version>
     <url>https://github.com/geeksword/geeksword-framework</url>
 
@@ -28,6 +29,7 @@
         <module>geeksword-parent</module>
         <module>geeksword-common</module>
         <module>geeksword-dependencies</module>
+        <module>geeksword-xwy</module>
     </modules>
 
 

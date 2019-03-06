@@ -9,10 +9,8 @@
         <module name="geeksword-common" />
         <module name="geeksword-dependencies" />
         <module name="geeksword-parent" />
+        <module name="geeksword-xwy" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="geeksword-xwy" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>

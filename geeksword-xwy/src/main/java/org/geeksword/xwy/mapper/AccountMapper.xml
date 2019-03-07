@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.sbdemo.mapper.AccountMapper">
-    <resultMap id="BaseResultMap" type="com.example.sbdemo.model.Account">
+<mapper namespace="org.geeksword.xwy.mapper.AccountMapper">
+    <resultMap id="BaseResultMap" type="org.geeksword.xwy.model.Account">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="money" property="money" jdbcType="DOUBLE"/>
@@ -24,14 +24,14 @@
       where id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <insert id="insert" parameterType="com.example.sbdemo.model.Account">
+    <insert id="insert" parameterType="org.geeksword.xwy.model.Account">
     insert into account (id, name, money
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}
       )
     </insert>
 
-    <insert id="insertSelective" parameterType="com.example.sbdemo.model.Account">
+    <insert id="insertSelective" parameterType="org.geeksword.xwy.model.Account">
         insert into account
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -57,7 +57,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.example.sbdemo.model.Account">
+    <update id="updateByPrimaryKeySelective" parameterType="org.geeksword.xwy.model.Account">
         update account
         <set>
             <if test="name != null">
@@ -70,7 +70,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.example.sbdemo.model.Account">
+    <update id="updateByPrimaryKey" parameterType="org.geeksword.xwy.model.Account">
        update account
        set name = #{name,jdbcType=VARCHAR},
        money = #{money,jdbcType=DOUBLE}

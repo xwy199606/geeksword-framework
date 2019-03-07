@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /*
@@ -27,10 +28,10 @@ public class AccountController {
 
     private final static Logger log = LoggerFactory.getLogger(AccountController.class);
 
-    @Autowired
+    @Resource
     private IAccountService accountService;
 
-    @Autowired
+    @Resource
     private IAcService acService;
 
 

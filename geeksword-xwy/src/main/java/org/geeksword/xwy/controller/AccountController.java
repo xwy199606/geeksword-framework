@@ -29,10 +29,10 @@ public class AccountController {
     private final static Logger log = LoggerFactory.getLogger(AccountController.class);
 
     @Resource
-    private IAccountService accountService;
+    private IAccountService accountService;//jdbc
 
     @Resource
-    private IAcService acService;
+    private IAcService acService;//mybatis
 
 
     @RequestMapping("/add")

@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import java.util.Arrays;
 
 @SpringBootApplication
-@MapperScan("org.geeksword.xwy.mapper")
 public class GeekswordXwyApplication {
 
     public static void main(String[] args) {

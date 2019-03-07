@@ -29,8 +29,8 @@ public class AcServiceImpl implements IAcService {
     }
 
     @Override
-    public int insertSelective(Account record) {
-        return accountMapper.insertSelective(record);
+    public void insertSelective(Account record) {
+        accountMapper.insertSelective(record);
     }
 
     @Override

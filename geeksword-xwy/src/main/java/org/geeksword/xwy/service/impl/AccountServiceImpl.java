@@ -15,8 +15,12 @@ import java.util.List;
 @Service
 public class AccountServiceImpl implements IAccountService {
 
+    private final IAccountDao accountDao;
+
     @Autowired
-    private IAccountDao accountDao;
+    public AccountServiceImpl(IAccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
 
 
     @Override

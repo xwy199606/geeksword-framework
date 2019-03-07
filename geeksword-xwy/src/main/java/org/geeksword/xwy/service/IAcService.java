@@ -12,7 +12,7 @@ public interface IAcService {
 
     int insert(Account record);
 
-    int insertSelective(Account record);
+    void insertSelective(Account record);
 
     Account selectByPrimaryKey(Integer id);
 

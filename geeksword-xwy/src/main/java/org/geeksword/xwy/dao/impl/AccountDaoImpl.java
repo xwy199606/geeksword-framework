@@ -15,8 +15,12 @@ import java.util.List;
  */
 @Repository
 public class AccountDaoImpl implements IAccountDao {
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public AccountDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public int add(Account account) {

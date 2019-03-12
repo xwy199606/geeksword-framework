@@ -24,7 +24,7 @@
         </javaTypeResolver>
 
         <!-- targetProject:生成PO类的位置，重要！！ -->
-        <javaModelGenerator targetPackage="com.example.sbdemo.model"
+        <javaModelGenerator targetPackage="org.geeksword.xwy.model"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
@@ -32,13 +32,13 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置，重要！！ -->
-        <sqlMapGenerator targetPackage="com.example.sbdemo.mapper"
+        <sqlMapGenerator targetPackage="org.geeksword.xwy.mapper"
                          targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
         <!-- targetPackage：mapper接口生成的位置，重要！！ -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.example.sbdemo.mapper"
+                             targetPackage="org.geeksword.xwy.dao"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>

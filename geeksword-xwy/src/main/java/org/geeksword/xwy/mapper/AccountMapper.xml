@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.geeksword.xwy.mapper.AccountMapper">
+    <!--Mybatis中namespace用于绑定dao接口，dao接口的方法对应mapper中的sql语名-->
+
     <resultMap id="BaseResultMap" type="org.geeksword.xwy.model.Account">
+        <!--id="该resultMap的标志" type="返回值的类名"-->
         <id column="id" property="id" jdbcType="INTEGER"/>
+        <!--id:用于设置主键字段与领域模型属性的映射关系，此处主键为ID column="数据库对应" property="实体属性"-->
         <result column="name" property="name" jdbcType="VARCHAR"/>
+        <!--result：用于设置普通字段与领域模型属性的映射关系-->
         <result column="money" property="money" jdbcType="DOUBLE"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
     </resultMap>
 
 
     <sql id="Base_Column_List">
-      id, name, money
+      id, name, money, age
     </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        <!--id="selectByPrimaryKey"绑定接口名 resultMap="结果集" parameterType="参数类型" -->
         select
         <include refid="Base_Column_List"/>
         from account
@@ -25,9 +32,9 @@
     </delete>
 
     <insert id="insert" parameterType="org.geeksword.xwy.model.Account">
-    insert into account (id, name, money
+    insert into account (id, name, money, age
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE}, #{age,jdbcType=INTEGER}
       )
     </insert>
 
@@ -43,6 +50,9 @@
             <if test="money != null">
                 money,
             </if>
+            <if test="age != null">
+                age,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -53,6 +63,9 @@
             </if>
             <if test="money != null">
                 #{money,jdbcType=DOUBLE},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>

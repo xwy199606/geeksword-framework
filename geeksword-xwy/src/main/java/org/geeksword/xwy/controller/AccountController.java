@@ -40,6 +40,7 @@ public class AccountController {
     public String addAccount(
             @RequestParam(value = "id",required = false) Integer id,
             @RequestParam(value = "name",required = true) String name,
+            @RequestParam(value = "age",required = false) Integer age,
             @RequestParam(value = "money",required = true) String money
     ){
         logger.info("addAccount() called with: id = [" + id + "], name = [" + name + "], money = [" + money + "]");
@@ -47,6 +48,7 @@ public class AccountController {
         //account.setId(id);
         account.setName(name);
         account.setMoney(Double.valueOf(money));
+        account.setAge(age);
         acService.insertSelective(account);
         logger.error("logger-back");
         return "success";

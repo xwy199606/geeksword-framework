@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -32,14 +31,12 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.function.BiFunction;
-import java.util.function.DoubleFunction;
 
 public class JobProcessor implements BeanPostProcessor, BeanFactoryAware, ApplicationContextAware, InstantiationAwareBeanPostProcessor, CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(JobProcessor.class);
@@ -135,8 +132,8 @@ public class JobProcessor implements BeanPostProcessor, BeanFactoryAware, Applic
                           String name,
                           LiteJobConfiguration liteJobConfiguration,
                           AJob aJob) {
-        boolean enableJobEvent = Optional.ofNullable(enableElasticJobAttributes).map(e->e.getBoolean("enableJobEvent")).orElse(false);
-//        boolean enableJobEvent = enableElasticJobAttributes.getBoolean("enableJobEvent");
+        boolean enableJobEvent = Optional.ofNullable(enableElasticJobAttributes).map(e -> e.getBoolean("enableJobEventConfiguration")).orElse(false);
+//        boolean enableJobEventConfiguration = enableElasticJobAttributes.getBoolean("enableJobEventConfiguration");
         String registerCenterRef = aJob.registerCenterRef();
         RegistryCenter registryCenter;
         //获取注册中心
@@ -154,29 +151,28 @@ public class JobProcessor implements BeanPostProcessor, BeanFactoryAware, Applic
                 .addConstructorArgValue(liteJobConfiguration);
         beanDefinitionBuilder.setInitMethodName("init");
         beanDefinitionBuilder.setLazyInit(false);
-        //是否开启job事件监听
+        //是否开启job事件记录
         if (enableJobEvent) {
-            ElasticJobListener[] elasticJobListeners;
-            if (!CollectionUtils.isEmpty(elasticJobListenerMap)) {
-                String[] elasticJobListenerRefs = aJob.elasticJobListeners();
-                if (ArrayUtils.isEmpty(elasticJobListenerRefs)) {
-                    elasticJobListeners = elasticJobListenerMap.values().toArray(new ElasticJobListener[0]);
-                } else {
-                    List<ElasticJobListener> listeners = new ArrayList<>(elasticJobListenerRefs.length);
-                    for (String elasticJobListenerRef : elasticJobListenerRefs) {
-                        Optional.ofNullable(elasticJobListenerMap.get(elasticJobListenerRef)).ifPresent(listeners::add);
-                    }
-                    elasticJobListeners = listeners.toArray(new ElasticJobListener[0]);
-                }
-            } else {
-                elasticJobListeners = new ElasticJobListener[0];
-            }
             JobEventConfiguration jobEventConfiguration = beanFactory.getBean(JobEventConfiguration.class);
             beanDefinitionBuilder.addConstructorArgValue(jobEventConfiguration);
-            beanDefinitionBuilder.addConstructorArgValue(elasticJobListeners);
-        } else {
-            beanDefinitionBuilder.addConstructorArgValue(new ElasticJobListener[0]);
         }
+        //添加任务监听器
+        ElasticJobListener[] elasticJobListeners;
+        if (!CollectionUtils.isEmpty(elasticJobListenerMap)) {
+            String[] elasticJobListenerRefs = aJob.elasticJobListeners();
+            if (ArrayUtils.isEmpty(elasticJobListenerRefs)) {
+                elasticJobListeners = elasticJobListenerMap.values().toArray(new ElasticJobListener[0]);
+            } else {
+                List<ElasticJobListener> listeners = new ArrayList<>(elasticJobListenerRefs.length);
+                for (String elasticJobListenerRef : elasticJobListenerRefs) {
+                    Optional.ofNullable(elasticJobListenerMap.get(elasticJobListenerRef)).ifPresent(listeners::add);
+                }
+                elasticJobListeners = listeners.toArray(new ElasticJobListener[0]);
+            }
+        } else {
+            elasticJobListeners = new ElasticJobListener[0];
+        }
+        beanDefinitionBuilder.addConstructorArgValue(elasticJobListeners);
         //注册job调度类
         BeanDefinitionRegistry beanDefinitionRegistry = (BeanDefinitionRegistry) beanFactory;
         beanDefinitionRegistry.registerBeanDefinition(name, beanDefinitionBuilder.getBeanDefinition());
@@ -216,9 +212,6 @@ public class JobProcessor implements BeanPostProcessor, BeanFactoryAware, Applic
         }
         if (StringUtils.isEmpty(shardingItemParameters)) {
             shardingItemParameters = Optional.ofNullable(jobConfig).map(ElasticJobConfig.JobConfig::getShardingItemParameters).orElse(null);
-//            if (StringUtils.isEmpty(shardingItemParameters)) {
-//                throw new IllegalArgumentException("shardingItemParameters cannot null or empty");
-//            }
         }
         return JobCoreConfiguration.newBuilder(
                 jobClass.getName(),
@@ -228,6 +221,7 @@ public class JobProcessor implements BeanPostProcessor, BeanFactoryAware, Applic
 
     /**
      * 激活SpringJobScheduler
+     *
      * @param args
      * @throws Exception
      */

@@ -1,11 +1,12 @@
 package org.geeksword.spring.boot.elastic;
 
+import com.dangdang.ddframe.job.event.JobEventConfiguration;
+import com.dangdang.ddframe.job.event.rdb.JobEventRdbConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import org.geeksword.spring.boot.elastic.config.ElasticJobConfig;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.geeksword.spring.boot.elastic.test.JobEventLoggerConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 
 public class ElasticJobAutoConfig {
 
@@ -27,9 +28,13 @@ public class ElasticJobAutoConfig {
     }
 
     @Bean(initMethod = "init")
-    @ConditionalOnBean(ZookeeperRegistryCenter.class)
     public ZookeeperRegistryCenter zookeeperRegistryCenter(ZookeeperConfiguration zookeeperConfiguration) {
         return new ZookeeperRegistryCenter(zookeeperConfiguration);
+    }
+
+    @Bean
+    public JobEventConfiguration jobEventRdbConfiguration(){
+        return new JobEventLoggerConfiguration();
     }
 
 }

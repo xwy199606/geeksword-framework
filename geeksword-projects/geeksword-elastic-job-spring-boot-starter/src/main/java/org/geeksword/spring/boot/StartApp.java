@@ -1,6 +1,6 @@
 package org.geeksword.spring.boot;
 
-import com.dangdang.ddframe.job.lite.spring.api.SpringJobScheduler;
+import org.geeksword.spring.boot.elastic.test.TestJob;
 import org.geeksword.spring.boot.elastic.annotations.EnableElasticJob;
 import org.geeksword.spring.boot.elastic.config.ElasticJobConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import java.util.Map;
 import java.util.concurrent.locks.LockSupport;
 
 @EnableConfigurationProperties(ElasticJobConfig.class)
-@EnableElasticJob
+@EnableElasticJob(enableJobEventConfiguration = true)
 @SpringBootApplication(scanBasePackages = "org.geeksword.*")
 public class StartApp implements CommandLineRunner {
 
@@ -22,9 +21,8 @@ public class StartApp implements CommandLineRunner {
         LockSupport.park();
     }
 
-
     @Autowired
-    private SpringJobScheduler stringSpringJobSchedulerMap;
+    private TestJob testJob;
 
     @Override
     public void run(String... args) throws Exception {

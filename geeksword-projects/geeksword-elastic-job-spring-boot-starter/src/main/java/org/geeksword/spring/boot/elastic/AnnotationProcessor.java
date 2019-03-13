@@ -62,7 +62,7 @@ public class AnnotationProcessor implements BeanPostProcessor, BeanFactoryAware,
         constructorArgumentValues.addIndexedArgumentValue(1, enableJobScannerAttributes);
         rootBeanDefinition.setConstructorArgumentValues(constructorArgumentValues);
         beanDefinitionRegistry.registerBeanDefinition(JobProcessor.class.getSimpleName(), rootBeanDefinition);
-//        boolean enableJobEvent = enableElasticJobAttributes.getBoolean("enableJobEvent");
+//        boolean enableJobEventConfiguration = enableElasticJobAttributes.getBoolean("enableJobEventConfiguration");
 //        String[] basePackages = enableJobScannerAttributes.getStringArray("basePackage");
 //
 //        ClassPathScanningCandidateComponentProvider classScanner = getClassScanner();
@@ -96,7 +96,7 @@ public class AnnotationProcessor implements BeanPostProcessor, BeanFactoryAware,
 //                            String name = beanName + "SimpleJob";
 //                            LiteJobConfiguration liteJobConfiguration = LiteJobConfiguration.newBuilder(createSimpleJob(beanClass)).
 //                                    overwrite(true).build();
-//                            register(beanDefinitionRegistry, enableJobEvent, beanName, name, liteJobConfiguration, beanClass);
+//                            register(beanDefinitionRegistry, enableJobEventConfiguration, beanName, name, liteJobConfiguration, beanClass);
 //                            continue;
 //                        }
 //                        log.warn("{} is not SimpleJob Instance", beanName);
@@ -108,7 +108,7 @@ public class AnnotationProcessor implements BeanPostProcessor, BeanFactoryAware,
 //                            String name = beanName + "DataFlowJob";
 //                            LiteJobConfiguration liteJobConfiguration = LiteJobConfiguration.newBuilder(createDataFlowJob(beanClass)).
 //                                    overwrite(true).build();
-//                            register(beanDefinitionRegistry, enableJobEvent, , beanName, name, liteJobConfiguration, beanClass);
+//                            register(beanDefinitionRegistry, enableJobEventConfiguration, , beanName, name, liteJobConfiguration, beanClass);
 //                            continue;
 //                        }
 //                        log.warn("{} is not DataflowJob Instance", beanName);

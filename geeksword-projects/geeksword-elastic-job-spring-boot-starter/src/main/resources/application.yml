@@ -1,0 +1,5 @@
+job:
+  serverLists: my.tencent.cn:2181
+  namespace: test_job
+  simple-job:
+    cron: ''

@@ -11,6 +11,7 @@
         <relativePath>../</relativePath>
     </parent>
 
+    <packaging>pom</packaging>
     <artifactId>geeksword-dependencies</artifactId>
     <version>${revision}</version>
     <properties>

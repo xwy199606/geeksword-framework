@@ -12,6 +12,6 @@
     </parent>
     <artifactId>geeksword-parent</artifactId>
     <version>${revision}</version>
-
+    <packaging>pom</packaging>
     
 </project>

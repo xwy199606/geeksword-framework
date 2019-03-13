@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Component
-public @interface DataflowJob {
+public @interface ADataflowJob {
 
     @AliasFor(attribute = "value", annotation = Component.class)
     String value() default "";

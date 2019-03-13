@@ -5,8 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Data
-@Component
-@ConfigurationProperties(prefix = "job")
+//@Component
+@ConfigurationProperties(prefix = "job",value = "job")
 public class ElasticJobConfig {
 
     /**

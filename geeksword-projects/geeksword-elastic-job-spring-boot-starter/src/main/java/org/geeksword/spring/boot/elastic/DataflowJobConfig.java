@@ -17,25 +17,25 @@ import javax.annotation.Resource;
 @Configuration
 public class DataflowJobConfig {
     
-    @Resource
-    private ZookeeperRegistryCenter regCenter;
-    
-    @Resource
-    private JobEventConfiguration jobEventConfiguration;
+//    @Resource
+//    private ZookeeperRegistryCenter regCenter;
+//
+//    @Resource
+//    private JobEventConfiguration jobEventConfiguration;
     
 //    @Bean
-//    public DataflowJob dataflowJob() {
+//    public ADataflowJob dataflowJob() {
 //        return new SpringDataflowJob();
 //    }
 //
-    @Bean(initMethod = "init")
-    public JobScheduler dataflowJobScheduler(final DataflowJob dataflowJob, @Value("${dataflowJob.cron}") final String cron, @Value("${dataflowJob.shardingTotalCount}") final int shardingTotalCount,
-                                           @Value("${dataflowJob.shardingItemParameters}") final String shardingItemParameters) {
-        return new SpringJobScheduler(dataflowJob, regCenter, getLiteJobConfiguration(dataflowJob.getClass(), cron, shardingTotalCount, shardingItemParameters), jobEventConfiguration);
-    }
-    
-    private LiteJobConfiguration getLiteJobConfiguration(final Class<? extends DataflowJob> jobClass, final String cron, final int shardingTotalCount, final String shardingItemParameters) {
-        return LiteJobConfiguration.newBuilder(new DataflowJobConfiguration(JobCoreConfiguration.newBuilder(
-                jobClass.getName(), cron, shardingTotalCount).shardingItemParameters(shardingItemParameters).build(), jobClass.getCanonicalName(), true)).overwrite(true).build();
-    }
+//    @Bean(initMethod = "init")
+//    public JobScheduler dataflowJobScheduler(final DataflowJob dataflowJob, @Value("${dataflowJob.cron}") final String cron, @Value("${dataflowJob.shardingTotalCount}") final int shardingTotalCount,
+//                                           @Value("${dataflowJob.shardingItemParameters}") final String shardingItemParameters) {
+//        return new SpringJobScheduler(dataflowJob, regCenter, getLiteJobConfiguration(dataflowJob.getClass(), cron, shardingTotalCount, shardingItemParameters), jobEventConfiguration);
+//    }
+//
+//    private LiteJobConfiguration getLiteJobConfiguration(final Class<? extends DataflowJob> jobClass, final String cron, final int shardingTotalCount, final String shardingItemParameters) {
+//        return LiteJobConfiguration.newBuilder(new DataflowJobConfiguration(JobCoreConfiguration.newBuilder(
+//                jobClass.getName(), cron, shardingTotalCount).shardingItemParameters(shardingItemParameters).build(), jobClass.getCanonicalName(), true)).overwrite(true).build();
+//    }
 }

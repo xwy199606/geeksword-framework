@@ -14,15 +14,15 @@ public @interface ASimpleJob {
     @AliasFor(attribute = "value", annotation = Component.class)
     String value() default "";
 
-    @AliasFor(annotation = AJob.class,attribute = "registerCenterRef")
+    @AliasFor(annotation = AJob.class, attribute = "registerCenterRef")
     String registerCenterRef() default "";
 
-    @AliasFor(annotation = AJob.class,attribute = "cron")
+    @AliasFor(annotation = AJob.class, attribute = "cron")
     String cron();
 
-    @AliasFor(annotation = AJob.class,attribute = "shardingTotalCount")
+    @AliasFor(annotation = AJob.class, attribute = "shardingTotalCount")
     int shardingTotalCount();
 
-    @AliasFor(annotation = AJob.class,attribute = "shardingItemParameters")
-    String shardingItemParameters();
+    @AliasFor(annotation = AJob.class, attribute = "shardingItemParameters")
+    String shardingItemParameters() default "";
 }

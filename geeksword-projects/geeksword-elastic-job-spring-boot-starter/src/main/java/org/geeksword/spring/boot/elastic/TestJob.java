@@ -3,7 +3,6 @@ package org.geeksword.spring.boot.elastic;
 import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.simple.SimpleJob;
 import org.geeksword.spring.boot.elastic.annotations.AJob;
-import org.geeksword.spring.boot.elastic.annotations.ASimpleJob;
 
 /**
  * @Author: zhoulinshun

@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Data
-//@Component
+@Component
 @ConfigurationProperties(prefix = "job", value = "job")
 public class ElasticJobConfig {
 
@@ -63,13 +63,14 @@ public class ElasticJobConfig {
     private JobConfig dataflowJob;
 
 
+    /**
+     * job 缺省配置
+     */
     @Data
     public static class JobConfig {
         String cron;
 
         int shardingTotalCount;
-
-        String shardingItemParameters;
 
         //Dataflow
         boolean streamProcess = true;

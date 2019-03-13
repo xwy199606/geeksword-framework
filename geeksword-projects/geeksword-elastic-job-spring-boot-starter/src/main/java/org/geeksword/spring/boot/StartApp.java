@@ -11,7 +11,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 import java.util.concurrent.locks.LockSupport;
 
-@EnableConfigurationProperties(ElasticJobConfig.class)
 @EnableElasticJob(enableJobEventConfiguration = true)
 @SpringBootApplication(scanBasePackages = "org.geeksword.*")
 public class StartApp implements CommandLineRunner {

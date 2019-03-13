@@ -1,5 +1,6 @@
 package org.geeksword.spring.boot.elastic.annotations;
 
+import com.dangdang.ddframe.job.event.JobEventConfiguration;
 import org.geeksword.spring.boot.elastic.ElasticJobAutoConfig;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
@@ -22,6 +23,11 @@ public @interface EnableElasticJob {
     @AliasFor(annotation = EnableJobScanner.class, attribute = "basePackage")
     String[] basePackage() default {};
 
+    /**
+     * 开启 job事件记录，开启后容器内需要注入 {@link JobEventConfiguration}实现类
+     *
+     * @return
+     */
     boolean enableJobEventConfiguration() default false;
 
 }

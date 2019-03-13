@@ -16,6 +16,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.geeksword.spring.boot.elastic.annotations.AJob;
+import org.geeksword.spring.boot.elastic.annotations.JobPro;
 import org.geeksword.spring.boot.elastic.config.ElasticJobConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -197,7 +198,7 @@ public class JobProcessor implements BeanPostProcessor, BeanFactoryAware, Applic
     private JobCoreConfiguration createJobCoreConfiguration(AJob aJob, Class jobClass, ElasticJobConfig.JobConfig jobConfig) {
         String cron = aJob.cron();
         int shardingTotalCount = aJob.shardingTotalCount();
-        String shardingItemParameters = aJob.shardingItemParameters();
+        String jobName = aJob.jobName();
         if (StringUtils.isEmpty(cron)) {
             cron = Optional.ofNullable(jobConfig).map(ElasticJobConfig.JobConfig::getCron).orElse(null);
             if (StringUtils.isEmpty(cron)) {
@@ -210,13 +211,27 @@ public class JobProcessor implements BeanPostProcessor, BeanFactoryAware, Applic
                 throw new IllegalArgumentException("shardingTotalCount cannot null or empty");
             }
         }
-        if (StringUtils.isEmpty(shardingItemParameters)) {
-            shardingItemParameters = Optional.ofNullable(jobConfig).map(ElasticJobConfig.JobConfig::getShardingItemParameters).orElse(null);
+        if (StringUtils.isEmpty(jobName)) {
+            jobName = jobClass.getName();
         }
-        return JobCoreConfiguration.newBuilder(
-                jobClass.getName(),
+
+        JobCoreConfiguration.Builder builder = JobCoreConfiguration.newBuilder(
+                jobName,
                 cron,
-                shardingTotalCount).shardingItemParameters(shardingItemParameters).build();
+                shardingTotalCount);
+
+        JobPro[] jobPros = aJob.jobProperties();
+        if (ArrayUtils.isNotEmpty(jobPros)) {
+            for (JobPro jobPro : jobPros) {
+                builder.jobProperties(jobPro.key().name(), jobPro.value());
+            }
+        }
+
+        return builder.description(aJob.description())
+                .shardingItemParameters(aJob.shardingItemParameters())
+                .failover(aJob.failover())
+                .jobParameter(aJob.jobParameter())
+                .build();
     }
 
     /**

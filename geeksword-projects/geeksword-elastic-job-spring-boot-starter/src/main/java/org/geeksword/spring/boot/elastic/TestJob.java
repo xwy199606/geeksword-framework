@@ -2,6 +2,7 @@ package org.geeksword.spring.boot.elastic;
 
 import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.simple.SimpleJob;
+import org.geeksword.spring.boot.elastic.annotations.AJob;
 import org.geeksword.spring.boot.elastic.annotations.ASimpleJob;
 
 /**
@@ -9,7 +10,7 @@ import org.geeksword.spring.boot.elastic.annotations.ASimpleJob;
  * @Description:
  * @Date: Created in 2019-03-13 14:26
  */
-@ASimpleJob(cron = "0/10 * * * * ?", shardingTotalCount = 1)
+@AJob( cron = "0/10 * * * * ?")
 public class TestJob implements SimpleJob {
     @Override
     public void execute(ShardingContext shardingContext) {

@@ -9,7 +9,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Component
-@AJob
 public @interface ASimpleJob {
     @AliasFor(attribute = "value", annotation = Component.class)
     String value() default "";

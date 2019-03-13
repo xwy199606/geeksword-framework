@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 //@Component
-@ConfigurationProperties(prefix = "job",value = "job")
+@ConfigurationProperties(prefix = "job", value = "job")
 public class ElasticJobConfig {
 
     /**
@@ -64,11 +64,14 @@ public class ElasticJobConfig {
 
 
     @Data
-    public static class JobConfig{
+    public static class JobConfig {
         String cron;
 
         int shardingTotalCount;
 
         String shardingItemParameters;
+
+        //Dataflow
+        boolean streamProcess = true;
     }
 }

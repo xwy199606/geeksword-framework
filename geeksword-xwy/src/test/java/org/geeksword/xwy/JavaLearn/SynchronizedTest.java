@@ -17,23 +17,23 @@ public class SynchronizedTest {
     private synchronized void method1() {
         System.out.println("Method 1 start");
         try {
-            System.out.println("Method 1 execute"+ ":" + sdf.format(new Date()));
+            System.out.println("Method 1 execute" + ":" + sdf.format(new Date()));
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Method 1 end"+ ":" + sdf.format(new Date()));
+        System.out.println("Method 1 end" + ":" + sdf.format(new Date()));
     }
 
     private synchronized void method2() {
         System.out.println("Method 2 start");
         try {
-            System.out.println("Method 2 execute"+ ":" + sdf.format(new Date()));
+            System.out.println("Method 2 execute" + ":" + sdf.format(new Date()));
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Method 2 end"+ ":" + sdf.format(new Date()));
+        System.out.println("Method 2 end" + ":" + sdf.format(new Date()));
     }
 
     private void method3() {
@@ -44,7 +44,7 @@ public class SynchronizedTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Method 3 end"+ ":" + sdf.format(new Date()));
+        System.out.println("Method 3 end" + ":" + sdf.format(new Date()));
     }
 
     private void method4() {
@@ -55,10 +55,10 @@ public class SynchronizedTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Method 4 end"+ ":" + sdf.format(new Date()));
+        System.out.println("Method 4 end" + ":" + sdf.format(new Date()));
     }
 
-    private static synchronized void method5(){
+    private static synchronized void method5() {
         System.out.println("Method 5 start");
         try {
             System.out.println("Method 5 execute");
@@ -69,7 +69,7 @@ public class SynchronizedTest {
         System.out.println("Method 5 end");
     }
 
-    private static synchronized void method6(){
+    private static synchronized void method6() {
         System.out.println("Method 6 start");
         try {
             System.out.println("Method 6 execute");
@@ -80,7 +80,7 @@ public class SynchronizedTest {
         System.out.println("Method 6 end");
     }
 
-    public void method7(){
+    private void method7() {
         System.out.println("Method 7 start");
         try {
             synchronized (this) {
@@ -93,7 +93,7 @@ public class SynchronizedTest {
         System.out.println("Method 7 end");
     }
 
-    public void method8(){
+    private void method8() {
         System.out.println("Method 8 start");
         try {
             synchronized (this) {
@@ -105,6 +105,7 @@ public class SynchronizedTest {
         }
         System.out.println("Method 8 end");
     }
+
     public static void main(String[] args) {
         final SynchronizedTest test = new SynchronizedTest();
         final SynchronizedTest test2 = new SynchronizedTest();
@@ -174,5 +175,19 @@ public class SynchronizedTest {
                 test.method8();
             }
         }).start();
+
+       /*
+                    运行结果解释
+        1、代码段2结果：
+　　          虽然method1和method2是不同的方法，但是这两个方法都进行了同步，并且是通过同一个对象去调用的，
+            所以调用之前都需要先去竞争同一个对象上的锁（monitor），也就只能互斥的获取到锁，因此，method1和method2只能顺序的执行。
+
+        2、代码段3结果：
+　　          虽然test和test2属于不同对象，但是test和test2属于同一个类的不同实例，由于method5和method6都属于静态同步方法，
+            所以调用的时候需要获取同一个类上monitor（每个类只对应一个class对象），所以也只能顺序的执行。
+
+        3、代码段4结果：
+              对于代码块的同步实质上需要获取Synchronized关键字后面括号中对象的monitor，由于这段代码中括号的内容都是this，
+              而method7和method8又是通过同一的对象去调用的，所以进入同步块之前需要去竞争同一个对象上的锁，因此只能顺序执行同步块。*/
     }
 }

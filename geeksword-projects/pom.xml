@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>geeksword-elastic-job-spring-boot-starter</module>
+        <module>geeksword-feign</module>
+        <module>geeksword-web-test</module>
     </modules>
 
 

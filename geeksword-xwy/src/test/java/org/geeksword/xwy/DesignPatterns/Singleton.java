@@ -46,8 +46,8 @@ public class Singleton {
      * 更适合多实例场景的管理，当下最火的Spring框架中IOC容器就采用的这种方式来管理我们系统中的Bean对象（例子相对spring要简单许多）
      * 我们创建的单例对象全部保存在Map容器中，由Map容器统一管理我们的单例对象。
      */
-    //Map容器
 
+    //Map容器
     private final static Map<String, Object> objectsMap = new ConcurrentHashMap<>();
 
     //获取实例 @return

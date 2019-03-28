@@ -20,10 +20,6 @@ public class day01 {
 //        System.out.println(FibonacciII(8));
 //        System.out.println(JumpFloorI(4));
 //        System.out.println(JumpFloorII(7));
-        int a= 0;
-        while(true){
-            a = a+1;
-        }
     }
 
     //递归

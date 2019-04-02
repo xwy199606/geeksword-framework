@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.geeksword</groupId>
         <artifactId>geeksword-dependencies</artifactId>
-        <version>#{revision}</version>
+        <version>${revision}</version>
         <relativePath>../geeksword-dependencies</relativePath>
     </parent>
     <artifactId>geeksword-parent</artifactId>

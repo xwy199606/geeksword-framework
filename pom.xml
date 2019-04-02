@@ -29,6 +29,7 @@
         <module>geeksword-parent</module>
         <module>geeksword-common</module>
         <module>geeksword-dependencies</module>
+        <module>geeksword-projects</module>
         <module>geeksword-xwy</module>
     </modules>
 

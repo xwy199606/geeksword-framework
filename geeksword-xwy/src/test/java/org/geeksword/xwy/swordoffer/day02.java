@@ -38,6 +38,7 @@ public class day02 {
         return sb.toString();
     }
 
+
     private static boolean wordPattern(String pattern, String str) {
         Map<Character, String> map = new HashMap<Character, String>();
         Set<String> set = new HashSet<String>();

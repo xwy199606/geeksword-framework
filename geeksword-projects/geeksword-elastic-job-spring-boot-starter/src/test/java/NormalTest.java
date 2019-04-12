@@ -6,7 +6,7 @@
 public class NormalTest {
 
     @org.junit.Test
-    public void test(){
+    public void test() {
 
     }
 

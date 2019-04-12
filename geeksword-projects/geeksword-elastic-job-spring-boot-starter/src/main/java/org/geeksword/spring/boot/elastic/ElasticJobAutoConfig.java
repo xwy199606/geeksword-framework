@@ -1,33 +1,24 @@
 package org.geeksword.spring.boot.elastic;
 
+import com.dangdang.ddframe.job.event.JobEventConfiguration;
+import com.dangdang.ddframe.job.event.rdb.JobEventRdbConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import org.geeksword.spring.boot.elastic.config.ElasticJobConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.EnvironmentAware;
+import org.geeksword.spring.boot.elastic.test.JobEventLoggerConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 
-//@Configuration
-public class ElasticJobAutoConfig implements EnvironmentAware {
-
-
-    @Autowired
-    private ElasticJobConfig elasticJobConfig;
-    private Environment environment;
+public class ElasticJobAutoConfig {
 
     @Bean
     public ZookeeperConfiguration zookeeperConfiguration(ElasticJobConfig elasticJobConfig) {
-        String severLists = environment.getProperty("job.serverLists");
-        String namespace = environment.getProperty("job.namespace");
-
-//        if (elasticJobConfig.getServerLists() == null) {
-//            throw new IllegalArgumentException("serverLists cannot be null");
-//        }
-//        if (elasticJobConfig.getNamespace() == null) {
-//            throw new IllegalArgumentException("namespace cannot be null");
-//        }
-        ZookeeperConfiguration zookeeperConfiguration = new ZookeeperConfiguration(severLists, namespace);
+        if (elasticJobConfig.getServerLists() == null) {
+            throw new IllegalArgumentException("serverLists cannot be null");
+        }
+        if (elasticJobConfig.getNamespace() == null) {
+            throw new IllegalArgumentException("namespace cannot be null");
+        }
+        ZookeeperConfiguration zookeeperConfiguration = new ZookeeperConfiguration(elasticJobConfig.getServerLists(), elasticJobConfig.getNamespace());
         zookeeperConfiguration.setDigest(elasticJobConfig.getDigest());
         zookeeperConfiguration.setBaseSleepTimeMilliseconds(elasticJobConfig.getBaseSleepTimeMilliseconds());
         zookeeperConfiguration.setConnectionTimeoutMilliseconds(elasticJobConfig.getConnectionTimeoutMilliseconds());
@@ -41,21 +32,9 @@ public class ElasticJobAutoConfig implements EnvironmentAware {
         return new ZookeeperRegistryCenter(zookeeperConfiguration);
     }
 
-    @Override
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
+    @Bean
+    public JobEventConfiguration jobEventRdbConfiguration(){
+        return new JobEventLoggerConfiguration();
     }
-
-//    @Bean(initMethod = "init")
-//    public JobScheduler simpleJobScheduler(final SimpleJob simpleJob, @Value("${simpleJob.cron}") final String cron, @Value("${simpleJob.shardingTotalCount}") final int shardingTotalCount,
-//                                           @Value("${simpleJob.shardingItemParameters}") final String shardingItemParameters) {
-//        return new SpringJobScheduler(simpleJob, null, getLiteJobConfiguration(simpleJob.getClass(), cron, shardingTotalCount, shardingItemParameters), jobEventConfiguration);
-//    }
-//
-//    private LiteJobConfiguration getLiteJobConfiguration(final Class<? extends SimpleJob> jobClass, final String cron, final int shardingTotalCount, final String shardingItemParameters) {
-//        return LiteJobConfiguration.newBuilder(new SimpleJobConfiguration(JobCoreConfiguration.newBuilder(
-//                jobClass.getName(), cron, shardingTotalCount).shardingItemParameters(shardingItemParameters).build(), jobClass.getCanonicalName())).overwrite(true).build();
-//    }
-//
 
 }

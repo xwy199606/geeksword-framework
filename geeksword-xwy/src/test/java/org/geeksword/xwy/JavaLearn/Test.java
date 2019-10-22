@@ -1,5 +1,11 @@
 package org.geeksword.xwy.JavaLearn;
 
+import org.geeksword.xwy.swordoffer.Day03;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.TreeSet;
+
 /*
  * @Author :xwy
  * @poem：悟来时见江海古，苍崖行遍谒玄门。
@@ -7,18 +13,27 @@ package org.geeksword.xwy.JavaLearn;
  * @Description:
  */
 public class Test {
-    String str = "6";
-    public static void main(String[] args) {
-        Test test = new Test();
-        test.change(test.str);
-        System.out.println(test.str);
-        String s = "111";
-        StringBuffer stringBuffer = new StringBuffer();
-
-
-
+    public String toString() {
+        return null;
     }
-    public void change(String str){
-         str = "10";
+
+    public static void main(String[] args) {
+
+
+//        int h = 15;
+//        System.out.println(h >>> 3);
+//        System.out.println(2 << 2);
+//        Hashtable hashtable = new Hashtable();
+//        TreeSet<Integer> tree = new TreeSet<Integer>();
+////        int[] s = {4, 2, 4, 6, 1, 2, 4, 7, 8};
+////        for (int i : s) {
+////            tree.add(i);
+////        }
+////        for (Integer integer : tree) {
+////            System.out.print(integer + " ");
+////        }
+        //1 2 4 6 7 8
+
+
     }
 }

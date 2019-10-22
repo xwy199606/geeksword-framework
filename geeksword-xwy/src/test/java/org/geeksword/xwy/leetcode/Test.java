@@ -1,5 +1,7 @@
 package org.geeksword.xwy.leetcode;
 
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.concurrent.*;
 
 /*
@@ -44,5 +46,7 @@ class Task implements Callable<Integer> {
         for (int i = 0; i < 100; i++)
             sum += i;
         return sum;
+
+
     }
 }

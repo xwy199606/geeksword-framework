@@ -2,30 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68b40936-b114-4992-8017-ce215b4a796a" name="Default Changelist" comment="update">
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/main/java/org/geeksword/mail/CrawTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/main/java/org/geeksword/mail/MailAuthenticator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/main/java/org/geeksword/mail/MailOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/main/java/org/geeksword/xwy/utils/DoubleUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/Fx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/MyTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/clone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/SqlExercise/NcSqlExercise" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/swordoffer/Day03.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/swordoffer/Day04.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/swordoffer/Day05.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/swordoffer/ListNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/swordoffer/QuickSort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/swordoffer/StackToQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geeksword-xwy/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/geeksword-xwy/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/SleepSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/Sleeper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/SynchronizedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/SynchronizedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/JavaLearn/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/leetcode/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/geeksword-xwy/src/test/java/org/geeksword/xwy/leetcode/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/geeksword-xwy/src/main/java/org/geeksword/mail/CrawTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/geeksword-xwy/src/main/java/org/geeksword/mail/CrawTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +59,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552889961516" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="Errors" />
@@ -103,13 +87,13 @@
       <recent name="$PROJECT_DIR$/geeksword-xwy/src/main/java/org/geeksword/geeksword" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.QuickSort">
-    <configuration name="Day03" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.geeksword.xwy.swordoffer.Day03" />
+  <component name="RunManager" selected="Application.CrawTest">
+    <configuration name="CrawTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.geeksword.mail.CrawTest" />
       <module name="geeksword-xwy" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.geeksword.xwy.swordoffer.*" />
+          <option name="PATTERN" value="org.geeksword.mail.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -185,19 +169,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Day03" />
       <item itemvalue="Application.Day04" />
       <item itemvalue="Application.DoubleUtil" />
       <item itemvalue="Application.Day05" />
       <item itemvalue="Application.QuickSort" />
+      <item itemvalue="Application.CrawTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CrawTest" />
         <item itemvalue="Application.QuickSort" />
         <item itemvalue="Application.Day04" />
         <item itemvalue="Application.Day05" />
         <item itemvalue="Application.DoubleUtil" />
-        <item itemvalue="Application.Day03" />
       </list>
     </recent_temporary>
   </component>
@@ -308,7 +292,7 @@
       <workItem from="1568252908490" duration="3032000" />
       <workItem from="1568514395304" duration="3291000" />
       <workItem from="1568643518219" duration="600000" />
-      <workItem from="1571729436791" duration="522000" />
+      <workItem from="1571729436791" duration="14872000" />
     </task>
     <task id="LOCAL-00001" summary="new springboot project">
       <created>1551863938690</created>
@@ -352,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552493549156</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="learn of 2019.4-2019.10">
+      <created>1571730143318</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1571730143318</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,6 +381,33 @@
     <MESSAGE value="springboot 集成 mybatis" />
     <MESSAGE value="单例 锁 斐波那契" />
     <MESSAGE value="单例写法 synchronized总结 字符格式匹配" />
-    <option name="LAST_COMMIT_MESSAGE" value="单例写法 synchronized总结 字符格式匹配" />
+    <MESSAGE value="learn of 2019.4-2019.10" />
+    <option name="LAST_COMMIT_MESSAGE" value="learn of 2019.4-2019.10" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1397" height="337" key="GridCell.Tab.0.bottom" timestamp="1571800743336">
+      <screen x="-1440" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="337" key="GridCell.Tab.0.bottom/0.0.1366.728/-1440.0.1440.860@-1440.0.1440.860" timestamp="1571800743336" />
+    <state width="1323" height="226" key="GridCell.Tab.0.bottom/0.0.1366.728/-1440.0.1440.860@0.0.1366.728" timestamp="1571796441882" />
+    <state width="1397" height="337" key="GridCell.Tab.0.center" timestamp="1571800743336">
+      <screen x="-1440" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="337" key="GridCell.Tab.0.center/0.0.1366.728/-1440.0.1440.860@-1440.0.1440.860" timestamp="1571800743336" />
+    <state width="1323" height="226" key="GridCell.Tab.0.center/0.0.1366.728/-1440.0.1440.860@0.0.1366.728" timestamp="1571796441881" />
+    <state width="1397" height="337" key="GridCell.Tab.0.left" timestamp="1571800743335">
+      <screen x="-1440" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="337" key="GridCell.Tab.0.left/0.0.1366.728/-1440.0.1440.860@-1440.0.1440.860" timestamp="1571800743335" />
+    <state width="1323" height="226" key="GridCell.Tab.0.left/0.0.1366.728/-1440.0.1440.860@0.0.1366.728" timestamp="1571796441881" />
+    <state width="1397" height="337" key="GridCell.Tab.0.right" timestamp="1571800743336">
+      <screen x="-1440" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="337" key="GridCell.Tab.0.right/0.0.1366.728/-1440.0.1440.860@-1440.0.1440.860" timestamp="1571800743336" />
+    <state width="1323" height="226" key="GridCell.Tab.0.right/0.0.1366.728/-1440.0.1440.860@0.0.1366.728" timestamp="1571796441881" />
+    <state x="-1057" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1571737161496">
+      <screen x="-1440" y="0" width="1440" height="860" />
+    </state>
+    <state x="-1057" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/-1440.0.1440.860@-1440.0.1440.860" timestamp="1571737161496" />
   </component>
 </project>

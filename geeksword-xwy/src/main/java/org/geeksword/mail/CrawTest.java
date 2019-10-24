@@ -15,34 +15,40 @@ import java.util.regex.Pattern;
 public class CrawTest {
    private static int successCount;
    private static Set<String> mailSet = new HashSet<>();
+   private static Set<String> urlSet = new HashSet<>();
 
    /**
     * 获取URL
     */
-   public static Set<String> crawlURL(String crawlURL) throws IOException {
-      URL url = new URL(crawlURL);
-      URLConnection conn = url.openConnection();//和网页建立连接
-      BufferedReader bufin = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-      String line = null;
-      String mailRegx = "href=\\\"(?<href>[^\\\"]*)\\\"";//<a href=>的正则表达式
-      Pattern p = Pattern.compile(mailRegx);//将正则封装成一个对象
-      Set<String> set = new HashSet<String>();
-      //使用set进行去重存储
-      while((line = bufin.readLine()) != null)//逐行读取网页上的字符串
-      {
-         Matcher m = p.matcher(line);//字符串和规则对象关联，生成一个匹配器
-         while(m.find())//循环查找匹配规则的子串
+   public static Set<String> crawlURL(String crawlURL) {
+      try {
+         URL url = new URL(crawlURL);
+         URLConnection conn = url.openConnection();//和网页建立连接
+         BufferedReader bufin = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+         String line = null;
+         String mailRegx = "href=\\\"(?<href>[^\\\"]*)\\\"";//<a href=>的正则表达式
+         Pattern p = Pattern.compile(mailRegx);//将正则封装成一个对象
+         Set<String> set = new HashSet<>();
+         //使用set进行去重存储
+         while((line = bufin.readLine()) != null)//逐行读取网页上的字符串
          {
-            set.add(m.group().substring(6, m.group().length() - 1));//添加截取后可用的URL
+            Matcher m = p.matcher(line);//字符串和规则对象关联，生成一个匹配器
+            while(m.find())//循环查找匹配规则的子串
+            {
+               set.add(m.group().substring(6, m.group().length() - 1));//添加截取后可用的URL
+            }
          }
-      }
 
-      set.add(crawlURL);
+      /*set.add(crawlURL);
       for(String string : set) {
-         System.out.println(string);//获取匹配后的结果
+          System.out.println(string);//获取匹配后的结果
+      }*/
+         System.out.println("主链接：" + crawlURL + " 子链接：" + set.size());
+         return set;
       }
-      System.out.println(set.size());
-      return set;
+      catch(Exception e) {
+         return new HashSet<>();
+      }
    }
 
    /**
@@ -68,9 +74,9 @@ public class CrawTest {
                set.add(m.group());
             }
          }
-         for(String string : set) {
-            //System.out.println(string);//获取匹配后的结果
-         }
+         // for(String string : set) {
+         //    System.out.println(string);//获取匹配后的结果
+         // }
          return set;
       }
       catch(Exception e) {
@@ -79,7 +85,7 @@ public class CrawTest {
       }
    }
 
-   public static void sendMail(){
+   public static void sendMail(int mailSize, Object[] array) {
       //发送邮件
       int count = 0;
       MailOperation operation = new MailOperation();
@@ -95,16 +101,15 @@ public class CrawTest {
       catch(Exception e) {
          e.printStackTrace();
       }*/
-      Object[] array = mailSet.toArray();
-      int mailSize = array.length;
-      for(int i = 200; i < 600; i++ ) {
+
+      for(int i = 1200; i < mailSize; i++) {
          try {
             String to = (String) array[i];
             String res = operation.sendMail(user, password, host, from, to, subject);
             Thread.sleep(3000);
             if("success".equals(res)) {
                count++;
-               System.out.println(to);
+               System.out.println("账号：" + to + " 位置：" + i);
             }
          }
          catch(Exception e) {
@@ -120,7 +125,19 @@ public class CrawTest {
    public static void main(String[] args) throws Exception {
       String url = "https://www.douban.com/group/search?start=0&cat=1013&sort=relevance&q=%E9%82%AE%E7%AE%B1";
 
-      Set<String> urlSet = crawlURL(url);
+      //第一层的URL
+      Set<String> set1 = crawlURL(url);
+
+      //第二层的URL
+      for(String s : set1) {
+         Set<String> set2 = crawlURL(s);
+
+         if(set2.size() > 0) {
+            urlSet.addAll(set2);
+         }
+      }
+
+      //第二层url中的邮箱账号
       for(String spec : urlSet) {
          Set<String> set = crawlMail(spec);
 
@@ -132,8 +149,10 @@ public class CrawTest {
       for(String string : mailSet) {
          System.out.println(string);
       }
-      System.out.println(mailSet.size());
-      sendMail();
+      System.out.println("链接数：" + urlSet.size());
+      System.out.println("邮箱数：" + mailSet.size());
+      Object[] array = mailSet.toArray();
+      int mailSize = array.length;
+      sendMail(mailSize, array);
    }
-
 }
